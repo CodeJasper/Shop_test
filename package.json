@@ -8,12 +8,11 @@
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
     "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
-    "lint": "eslint src/ --fix"
+    "lint": "eslint src/ --fix",
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint"
-    }
+  "lint-staged": {
+    "*.js": ["eslint", "prettier --write"]
   },
   "repository": {
     "type": "git",
@@ -46,7 +45,8 @@
     "eslint-plugin-react": "^7.29.4",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.7",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^2.6.0",
     "webpack": "^5.70.0",
