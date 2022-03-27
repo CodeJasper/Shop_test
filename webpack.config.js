@@ -3,10 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[contenthash].js',
+    filename: 'index.js',
+    clean: true,
   },
 
   resolve: {
@@ -30,14 +31,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: {
-          loader: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            'css-loader',
-          ],
-        },
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+        ],
       },
     ],
   },
@@ -45,17 +42,21 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: '[contenthash].html',
+      filename: './index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[contenthash].css',
+      filename: 'assets/index.css',
     }),
   ],
 
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.resolve(__dirname, 'dist'),
     },
+    devMiddleware: {
+      index: 'index.html',
+    },
+    historyApiFallback: true,
     compress: true,
     port: 3000,
   },
