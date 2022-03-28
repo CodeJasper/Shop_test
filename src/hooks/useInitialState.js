@@ -18,9 +18,17 @@ export default function useInitialState() {
     });
   };
 
+  const addToBuyer = (payload) => {
+    setState({
+      ...state,
+      buyer: [...state.buyer, payload],
+    });
+  };
+
   return {
     addToCart,
     removeFromCart,
+    addToBuyer,
     state,
   };
 }

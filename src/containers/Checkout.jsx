@@ -33,7 +33,7 @@ export default function Checkout(){
           </div>
         ))}
       </div>
-      {cart.lenght > 0 && (
+      {cart.length > 0 && (
         <div className="Checkout-sidebar">
           <h3>{`Precio total: $ ${handleSumTotal()}`}</h3>
           <Link to="/checkout/information">
