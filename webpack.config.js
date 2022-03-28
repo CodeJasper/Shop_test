@@ -11,6 +11,8 @@ module.exports = {
     clean: true,
   },
 
+  devtool: 'source-map',
+
   resolve: {
     extensions: ['.js', '.jsx'],
   },
